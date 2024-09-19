@@ -40,7 +40,7 @@ This project aims to develop a **secure**, and **scalable data collection system
    - MongoDB setup, data ingestion via MQTT, and cloud-based processing.
 
 4. **Visualization and Monitoring**
-   - Grafana dashboard integration for real-time visualization and reporting.
+   - Dashboard integration for real-time visualization and reporting.
 
 ## Documentation
 - **Lecture report:** 
