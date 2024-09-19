@@ -45,7 +45,7 @@ This project aims to develop a **secure**, and **scalable data collection system
 ## Documentation
 - **Lecture report:** 
 - **Group report:**
-- **Architecture diagramm:**
+- **Architecture diagramm:** https://drive.google.com/file/d/18rGGxSGw3XwXnwWg__I8JwvKpIeWuB_B/view?usp=sharing
 - **Scope and project description:**
 - **Team contract:** https://docs.google.com/document/d/1AwL4ppirnH3McH4XpLjfCqD5HfUx5xqh-ucVEgvVfF4/edit?usp=sharing
 - **Questions:** https://docs.google.com/document/d/1MhpU9-iZGjihDWCyyB5e3uR8SlVTCHAWidYPyjr71D4/edit?pli=1
