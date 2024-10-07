@@ -1,7 +1,4 @@
-Here’s a summarized **README.md** for your project in markdown format:
-
-```markdown
-# Sensor Dashboard & Data Processing
+Sensor Dashboard & Data Processing
 
 ## Overview
 This project is a microservices-based architecture for collecting and processing sensor data. It uses Docker Compose to deploy the services, including Kafka, Spark, MongoDB, a Java backend, and an Angular frontend.
@@ -10,7 +7,7 @@ This project is a microservices-based architecture for collecting and processing
 - Docker & Docker Compose
 - Git
 
-## Quick Start
+Quick Start
 
 1. **Clone the Repository**:
    ```bash
