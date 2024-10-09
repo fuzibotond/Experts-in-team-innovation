@@ -23,17 +23,17 @@ public class SensorDataListener {
     private static final Logger logger = LoggerFactory.getLogger(SensorDataListener.class);
     private final ObjectMapper objectMapper = new ObjectMapper();  // Jackson ObjectMapper
 
+    private final SensorDataRepository sensorDataRepository;
+    private final SimpMessagingTemplate messagingTemplate;
 
-    @Autowired
-    private SensorDataRepository sensorDataRepository;
-
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+    public SensorDataListener(SensorDataRepository sensorDataRepository, SimpMessagingTemplate messagingTemplate) {
+        this.sensorDataRepository = sensorDataRepository;
+        this.messagingTemplate = messagingTemplate;
+    }
 
     @KafkaListener(topics = "sensor-data-topic", groupId = "sensor-group")
     public void listen(String message) {
         logger.info("Received message: {}", message);
-
 
         try {
             // Parse the JSON string to a Map
@@ -47,6 +47,7 @@ public class SensorDataListener {
 
             // Log before saving to MongoDB
             logger.info("Saving message to MongoDB: {}", sensorData);
+            System.out.println(sensorData + " WTF AM I GETTTING?");
             sensorDataRepository.save(sensorData);
 
             // Send real-time update to clients

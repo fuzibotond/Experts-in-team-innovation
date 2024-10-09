@@ -25,7 +25,6 @@ public class RobotSimulator {
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, data);
             producer.send(record);
         }
-
         producer.close();
     }
 }

@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class RealTimeDataController {
+    private final SimpMessagingTemplate messagingTemplate;
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+    public RealTimeDataController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
 
     @KafkaListener(topics = "sensor-data-topic", groupId = "sensor-consumer-group")
     public void listenToKafka(String message) {
