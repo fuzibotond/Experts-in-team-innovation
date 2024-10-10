@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <h2>Sensor Data Dashboard</h2>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <button (click)="loadLatestData()" [disabled]="isLoading">Refresh Data</button>
+    <div *ngIf="isLoading" class="loading-spinner">
+        Loading...
+    </div>
+  
+    <div *ngIf="sensorData.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Sensor ID</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of sensorData">
+            <td>{{ data.id }}</td>
+            <td>{{ data.sensorType }}</td>
+            <td>{{ data.data }}</td>
+            <td>{{ data.timestamp | date: 'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="sensorData.length === 0 && !errorMessage">
+      <p>No data available.</p>
+    </div>
+  </div>
+  
