@@ -1,0 +1,60 @@
+# Ignore node_modules (if used in the frontend)
+node_modules/
+
+# Ignore Python bytecode and virtual environments
+*.pyc
+__pycache__/
+.env
+venv/
+*.egg-info/
+
+# Ignore Java build and dependency files
+*.class
+*.jar
+*.war
+*.ear
+*.log
+build/
+target/
+.gradle/
+.mvn/
+
+# Ignore Spark logs and temporary files
+spark/logs/
+spark/work/
+
+# Ignore Kafka logs and data
+kafka/
+kafka_data/
+
+# Ignore MongoDB data files
+mongo-data/
+data/db/
+*.lock
+
+# Ignore Flask build files
+*.pytest_cache/
+instance/
+*.sqlite3
+
+# Ignore Docker build artifacts and volumes
+**/Dockerfile
+**/docker-compose.override.yml
+**/docker-compose.override.yaml
+.dockerignore
+*.log
+*.pid
+tmp/
+volumes/
+data/
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
