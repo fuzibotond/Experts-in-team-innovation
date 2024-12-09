@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="d-flex">
+      <span class="app-title">ABCD</span>
+  
+  
+      <!-- Navigation Links -->
+      <div class="container-fluid justify-content-between">
+        <a mat-button routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+        <a mat-button routerLink="/topics" routerLinkActive="active-link">Topics</a>
+        <a mat-button routerLink="/register" routerLinkActive="active-link">Register</a>
+      </div>
+      <div class="container-fluid justify-content-between">
+        <button mat-button [matMenuTriggerFor]="menu">{{user || 'User'}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item> <a mat-button routerLink="/" routerLinkActive="active-link">{{user || 'User'}}</a></button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+        
+       
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  

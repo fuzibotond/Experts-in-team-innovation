@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 public class SensorData {
     @Id
     private String id;
+    private String topic;
     private String sensorType;
-    private Double data;
+    private String data;
     private LocalDateTime timestamp;
 }

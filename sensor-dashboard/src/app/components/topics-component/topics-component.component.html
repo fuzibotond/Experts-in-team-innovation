@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <h2>Edge Device Data Dashboard</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <button mat-flat-button (click)="loadLatestData()" [disabled]="isLoading">Refresh Data</button>
+    <button mat-flat-button (click)="subscribeAll()" [disabled]="isSubscribed">Subscribe to all</button>
+    <div *ngIf="isLoading" class="loading-spinner">
+        Loading...
+    </div>
+
+    <div *ngIf="topicData.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Topic</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Active</th>
+            <th>Created by</th>
+            <th>Last used</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of topicData">
+            <td>{{ data.id }}</td>
+            <td>{{ data.topic }}</td>
+            <td>{{ data.username }}</td>
+            <td>{{ data.password }}</td>
+            <td>{{ data.createdBy }}</td>
+            <td>{{ isActiveTopic(data.name) ? "Active" : "Inactive" }}</td>
+            <td>{{ data.lastUsed | date: 'medium' }}</td>
+            <td>
+              <!-- Add Delete Button -->
+              <button (click)="deleteTopicData(data.id)" class="btn btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="topicData.length === 0 && !errorMessage">
+      <p>No data available.</p>
+    </div>
+  </div>

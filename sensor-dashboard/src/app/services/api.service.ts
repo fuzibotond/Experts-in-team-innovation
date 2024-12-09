@@ -1,23 +1,30 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpService} from './http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8085/api/data';
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpService) {
+  }
 
   // Get all sensor data
   getAllSensorData(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get("/api/data/all");
   }
 
   // Get sensor data by type
   getSensorDataByType(sensorType: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${sensorType}`);
+    return this.http.get(`/api/data/${sensorType}`);
+  }
+
+  deleteSensorDataById(id: string): Observable<any> {
+    return this.http.delete(`/api/data/remove?id=${id}`);
+  }
+
+  deleteAllSensorData(): Observable<any> {
+    return this.http.delete(`/api/data/remove/all`);
   }
 }

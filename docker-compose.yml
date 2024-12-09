@@ -72,14 +72,14 @@ services:
     volumes:
       - mongo-data:/data/db
 
-  # frontend:
-  #   build:
-  #     context: ./sensor-dashboard # Adjust this path to where your frontend project is located relative to the docker-compose.yml
-  #     dockerfile: Dockerfile # Make sure this is the name of the Dockerfile for your frontend
-  #   ports:
-  #     - "80:80" # Expose port 4200 for development; adjust if needed
-  #   depends_on:
-  #     - java-server
+  frontend:
+    build:
+      context: ./sensor-dashboard # Adjust this path to where your frontend project is located relative to the docker-compose.yml
+      dockerfile: Dockerfile # Make sure this is the name of the Dockerfile for your frontend
+    ports:
+      - "80:80" # Expose port 4200 for development; adjust if needed
+    depends_on:
+      - java-server
 
 volumes:
   mongo-data:

@@ -1,8 +1,25 @@
 spring:
-  kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+  security:
+    oauth2:
+      resourceserver:
+        opaque-token:
+          introspection-uri: https://www.googleapis.com/
+          clientId: ${GOOGLE_CLIENT_ID}
+          clientSecret: ${GOOGLE_CLIENT_SECRET}
+
   data:
     mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI:mongodb://mongo:27017/data-collecting-db}
+      uri: mongodb://localhost:27017/data-collecting-db
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
 server:
   port: 8085
+
+app:
+  frontend:
+    url: ${FRONTEND_URL:http://localhost:4200}
+
+logging:
+  level:
+    org.springframework.web.cors: TRACE
+    org.springframework.security: TRACE

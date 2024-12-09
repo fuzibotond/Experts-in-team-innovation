@@ -8,6 +8,7 @@ __pycache__/
 venv/
 *.egg-info/
 
+
 # Ignore Java build and dependency files
 *.class
 *.jar
@@ -54,6 +55,9 @@ data/
 *.iml
 *.sublime-project
 *.sublime-workspace
+*.iws
+*.iml
+*.ipr
 
 # Ignore OS-specific files
 .DS_Store

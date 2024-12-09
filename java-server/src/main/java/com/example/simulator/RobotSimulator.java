@@ -1,10 +1,11 @@
 package com.example.simulator;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 public class RobotSimulator {
@@ -18,10 +19,10 @@ public class RobotSimulator {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         // Simulating sensor data from robot
-        String topic = "sensor-data-topic";
+        String topic = "robot/data-1";
 
-        for (int i = 0; i < 10; i++) {
-            String data = "{\"sensorType\": \"temperature\", \"value\": " + (20 + Math.random() * 5) + ", \"timestamp\": \"2024-10-03T12:30:00\"}";
+        for (int i = 0; i < 5; i++) {
+            String data = "{\"sensorType\": \"new\",\"topic\": \""+topic+"\", \"data\": " + (20 + Math.random() * 5) + ", \"timestamp\": \"" + LocalDateTime.now() + "\"}";
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, data);
             producer.send(record);
         }
