@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from pyspark.sql import SparkSession
 
-# Initialize Flask app
 app = Flask(__name__)
 
 # Initialize Spark session
@@ -31,15 +30,11 @@ def process_data():
     # Assume we're receiving some data for Spark processing
     content = request.get_json()
 
-    # Do something with the incoming data, e.g., saving it to a Spark DataFrame
     df = spark.createDataFrame(content)
 
-    # Perform transformations, e.g., count rows
     row_count = df.count()
-
     return jsonify({"message": "Data processed", "row_count": row_count})
 
 
 if __name__ == '__main__':
-    # Flask will run on port 8080
     app.run(host='0.0.0.0', port=8080)
