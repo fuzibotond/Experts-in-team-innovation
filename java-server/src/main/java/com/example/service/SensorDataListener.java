@@ -39,7 +39,6 @@ public class SensorDataListener {
             // Parse the JSON string to a Map
             Map<String, Object> parsedData = objectMapper.readValue(message, Map.class);
 
-            // Create a new SensorData object and map fields from the parsedData
             SensorData sensorData = new SensorData();
             sensorData.setSensorType((String) parsedData.get("sensorType"));
             sensorData.setData((Double) parsedData.get("value"));  // Ensure value is Double type
