@@ -30,8 +30,8 @@
             <td>{{ data.topic }}</td>
             <td>{{ data.username }}</td>
             <td>{{ data.password }}</td>
-            <td>{{ data.createdBy }}</td>
             <td>{{ isActiveTopic(data.name) ? "Active" : "Inactive" }}</td>
+            <td>{{ data.createdBy }}</td>
             <td>{{ data.lastUsed | date: 'medium' }}</td>
             <td>
               <!-- Add Delete Button -->

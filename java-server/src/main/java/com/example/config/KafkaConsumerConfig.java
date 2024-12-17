@@ -17,8 +17,14 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-    @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
-    private String BOOTSTRAP_SERVERS; // Kafka Broker Address
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String BOOTSTRAP_SERVERS;
+
+    @Value("${spring.kafka.sasl.username}")
+    private String SASL_USERNAME;
+
+    @Value("${spring.kafka.sasl.password}")
+    private String SASL_PASSWORD;
     private static final String GROUP_ID = "dynamic-topic-group";           // Consumer Group ID
 
     // Create Consumer Factory Bean
@@ -29,6 +35,13 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+
+        // Add SASL authentication properties
+        props.put("security.protocol", "SASL_PLAINTEXT");
+        props.put("sasl.mechanism", "SCRAM-SHA-256");
+        props.put("sasl.jaas.config", String.format(
+                "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"%s\" password=\"%s\";",
+                SASL_USERNAME, SASL_PASSWORD));
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
