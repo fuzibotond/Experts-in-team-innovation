@@ -23,14 +23,17 @@ import java.util.Arrays;
 public class AuthController {
 
     @Value("${spring.security.oauth2.resourceserver.opaque-token.clientId}")
-    private String clientId;
+    private String clientIdToken;
 
     @Value("${spring.security.oauth2.resourceserver.opaque-token.clientSecret}")
-    private String clientSecret;
+    private String clientSecretToken;
 
 
     @GetMapping("/auth/url")
-    public ResponseEntity<UrlDto> auth() {
+    public ResponseEntity<UrlDto> auth(@RequestParam(value = "clientId", defaultValue = "defaultClientId") String clientId) {
+        if(clientId == null) {
+            clientId = clientIdToken;
+        }
         String url = new GoogleAuthorizationCodeRequestUrl(clientId,
                 "http://localhost:4200",
                 Arrays.asList(
@@ -43,7 +46,11 @@ public class AuthController {
     }
 
     @GetMapping("/auth/callback")
-    public ResponseEntity<TokenDto> callback(@RequestParam("code") String code) throws URISyntaxException {
+    public ResponseEntity<TokenDto> callback(@RequestParam("code") String code, @RequestParam("clientId") String clientId, @RequestParam("clientSecret") String clientSecret) throws URISyntaxException {
+        if(clientId == null || clientSecret == null) {
+            clientId = clientIdToken;
+            clientSecret = clientSecretToken;
+        }
         System.out.println("Hit from callback with code: " + code);
         String token;
         try {

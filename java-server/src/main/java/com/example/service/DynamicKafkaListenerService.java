@@ -1,8 +1,6 @@
 package com.example.service;
 
 import com.example.config.KafkaConsumerConfig;
-import com.example.dto.EdgeDeviceDto;
-import com.example.dto.RegisterEdgeDeviceDto;
 import com.example.repository.SensorDataRepository;
 import com.example.repository.EdgeDeviceRepository;
 import com.example.repository.data.SensorData;
@@ -152,12 +150,14 @@ public class DynamicKafkaListenerService {
     }
 
 
-    // Method to get active topics
     public Set<String> getActiveTopics() {
         return activeTopics;
     }
 
-    // Save received data by topic to MongoDB
+    public Optional<EdgeDevice> getTopicById(String id) {
+        return edgeDeviceRepository.findById(id);
+    }
+
     private void saveDataByTopic(String topic, String data) {
 
         try {
@@ -194,9 +194,7 @@ public class DynamicKafkaListenerService {
         }
     }
 
-    public Optional<EdgeDevice> getTopicById(String id) {
-        return edgeDeviceRepository.findById(id);
-    }
+
 
     public void deleteKafkaTopic(String topicName) {
         try (AdminClient adminClient = AdminClient.create(kafkaAdmin.getConfigurationProperties())) {
